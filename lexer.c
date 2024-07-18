@@ -122,7 +122,7 @@ Token lexer_next(LexState *S) {
 
 /* Implementation */
 char advance(LexState *S) {
-    char c = *S->current++;
+    char c = (*S->current != '\0') ? *S->current++ : *S->current;
     if (c == '\n') {
 	S->lineno++;
     }
@@ -151,8 +151,9 @@ Token make_token(LexState *S, TokenType t) {
 }
 
 Token make_string_token(LexState *S) {
-    while (peek(S) != '"') {
-	(void)advance(S);
+    for (;;) {
+	char c = advance(S);
+	if (c == '\"') break;
     }
     return make_token(S, TOK_STRING);
 }
@@ -206,7 +207,10 @@ static Keyword keywords[] = {
     K("for", TOK_FOR),
     K("in", TOK_IN),
     K("continue", TOK_CONTINUE),
-    K("break", TOK_BREAK)
+    K("break", TOK_BREAK),
+    K("do", TOK_DO),
+    K("then", TOK_THEN),
+    K("end", TOK_END)
 };
 
 /**

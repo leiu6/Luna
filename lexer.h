@@ -59,6 +59,9 @@ X(TOK_PIPE_PIPE),\
 			X(TOK_IN),\
 			X(TOK_CONTINUE),\
 			X(TOK_BREAK),\
+			X(TOK_DO),\
+	X(TOK_THEN),\
+			X(TOK_END),\
 			\
 			X(TOK_IDENTIFIER),\
 			X(TOK_STRING),\

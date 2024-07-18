@@ -3,7 +3,7 @@
 # run command make -B DEBUG=0.
 DEBUG ?= 1
 TARGET = luna
-CFLAGS = -Wall -Werror -Wpedantic -ansi -MD -MP
+CFLAGS = -Wall -Wpedantic -ansi -MD -MP
 
 # Setting DEBUG or release specific CFLAGS
 ifeq ($(DEBUG), 1)
@@ -15,7 +15,7 @@ endif
 .PHONY: all
 all: $(TARGET)
 
-SRCS := main.c lexer.c
+SRCS := main.c lexer.c parser.c state.c object.c memory.c vm.c
 OBJS := $(SRCS:.c=.o)
 
 $(TARGET): $(OBJS)
@@ -28,4 +28,4 @@ $(TARGET): $(OBJS)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(TARGET) $(OBJS)
+	$(RM) -r $(TARGET) $(OBJS) *.d
