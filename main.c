@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
 void launch_repl(void) {
     Luna_State *L = luna_state_new();
 
+    printf("Welcome to the Luna interactive REPL!\n");
     for (;;) {
 	char line[1024];
 	printf("> ");

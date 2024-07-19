@@ -26,6 +26,7 @@ void lexer_init(LexState *S, const char *src);
 	X(TOK_COLON),\
 	X(TOK_DOT),\
 	X(TOK_COMMA),\
+	X(TOK_QUESTION),\
 	\
 	X(TOK_PLUS),\
 	X(TOK_MINUS),\
@@ -62,8 +63,12 @@ X(TOK_PIPE_PIPE),\
 			X(TOK_DO),\
 	X(TOK_THEN),\
 			X(TOK_END),\
+	X(TOK_PRINT),\
 			\
 			X(TOK_IDENTIFIER),\
+	X(TOK_NIL),\
+	X(TOK_TRUE),\
+	X(TOK_FALSE),\
 			X(TOK_STRING),\
 			X(TOK_INTEGER),\
 			X(TOK_DOUBLE),\

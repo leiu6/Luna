@@ -31,10 +31,13 @@
 	X(OP_BXOR),				\
 						\
 	X_ARG(OP_PUSH),				\
-	X_ARG(OP_PUSH_NIL),			\
-	X_ARG(OP_PUSH_TRUE),			\
-	X_ARG(OP_PUSH_FALSE),			\
+	X(OP_PUSH_NIL),			\
+	X(OP_PUSH_TRUE),			\
+	X(OP_PUSH_FALSE),			\
 	X(OP_POP),				\
+	X_ARG(OP_POP_N),\
+	\
+	X(OP_PRINT),\
 	\
 	X_ARG(OP_JUMP),\
 	X_ARG(OP_JUMP_IF_FALSE),\
@@ -45,6 +48,11 @@
 	X_ARG(OP_GET_GLOBAL),			\
 	X_ARG(OP_SET_LOCAL),			\
 	X_ARG(OP_GET_LOCAL),			\
+	\
+	X(OP_TABLE_SET),\
+	X(OP_TABLE_GET),\
+	X(OP_TABLE_GET_WITH_SELF),\
+	X_ARG(OP_TABLE_MAKE),\
 						\
 	X_ARG(OP_CALL),				\
 	X_ARG(OP_RETURN)

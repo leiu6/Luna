@@ -24,6 +24,7 @@ void luna_state_delete(Luna_State *L) {
 int luna_execute_string(Luna_State *L, const char *src) {
     ParseState parser = {0};
     Function *func = NULL;
+    int ret = -1;
 
     /* Out of memory error point */
     if (setjmp(L->oom) != 0) {
@@ -35,7 +36,7 @@ int luna_execute_string(Luna_State *L, const char *src) {
     if (!func) {
 	return LUNA_COMPILE_ERROR;
     }
-    int ret = vm_exec(&L->vm, func);
+    ret = vm_exec(&L->vm, func);
     if (ret != 0) {
 	return LUNA_RUNTIME_ERROR;
     }

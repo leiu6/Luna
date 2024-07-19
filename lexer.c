@@ -90,6 +90,7 @@ Token lexer_next(LexState *S) {
     case ':': return make_token(S, TOK_COLON);
     case '.': return make_token(S, TOK_DOT);
     case ',': return make_token(S, TOK_COMMA);
+    case '?': return make_token(S, TOK_QUESTION);
     case '+': return make_token(S, TOK_PLUS);
     case '-': return make_token(S, TOK_MINUS);
     case '*': return make_token(S, match(S, '*') ? TOK_STAR_STAR : TOK_STAR);
@@ -210,7 +211,11 @@ static Keyword keywords[] = {
     K("break", TOK_BREAK),
     K("do", TOK_DO),
     K("then", TOK_THEN),
-    K("end", TOK_END)
+    K("end", TOK_END),
+    K("nil", TOK_NIL),
+    K("true", TOK_TRUE),
+    K("false", TOK_FALSE),
+    K("print", TOK_PRINT)
 };
 
 /**
@@ -241,12 +246,23 @@ Token make_error_token(LexState *S) {
     return make_token(S, TOK_ERROR);
 }
 
+static b32 skip_comment(LexState *S, char c) {
+    if (c != '#')
+	return false;
+
+    while (peek(S) != '\n' && peek(S) != '\0') {
+	S->start = S->current;
+        advance(S);
+    }
+    return true;
+}
+
 char get_first_non_whitespace(LexState *S) {
     char c;
     do {
 	S->start = S->current;
 	c = advance(S);
-    } while (c == ' ' || c == '\n' || c == '\t' || c == '\r');
+    } while (c == ' ' || c == '\n' || c == '\t' || c == '\r' || skip_comment(S, c));
     return c;
 }
 
